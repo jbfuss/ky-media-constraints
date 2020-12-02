@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ky-media-constraints';
+  innerWidth = window.innerWidth;
+  innerHeight = window.innerHeight;
+
+
+  @HostListener('window:resize', [])
+  public onResize(): void {
+    this.innerWidth = window.innerWidth;
+    this.innerHeight = window.innerHeight;
+  }
+
 }
