@@ -1,19 +1,26 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  innerWidth = window.innerWidth;
-  innerHeight = window.innerHeight;
+export class AppComponent implements OnInit {
+  innerWidth;
+  innerHeight;
 
 
   @HostListener('window:resize', [])
   public onResize(): void {
-    this.innerWidth = window.innerWidth;
-    this.innerHeight = window.innerHeight;
+    this.updateMediaConstraints();
   }
 
+  private updateMediaConstraints() {
+    this.innerWidth = window.innerWidth;
+    this.innerHeight = window.innerHeight - 130;
+  }
+
+  ngOnInit(): void {
+    this.updateMediaConstraints();
+  }
 }
